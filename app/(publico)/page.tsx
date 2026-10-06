@@ -55,8 +55,8 @@ export default async function Inicio() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <TituloSeccion
             etiqueta="Servicios"
-            titulo="Soluciones en vidrio y aluminio"
-            texto="Diseñamos, fabricamos e instalamos a la medida para hogares, oficinas y comercios."
+            titulo="Soluciones en aluminio, vidrio y PVC"
+            texto="Fabricamos e instalamos a la medida para hogares, oficinas y negocios… ¡y mucho más!"
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {serviciosVisibles.map((s) => (
@@ -104,7 +104,9 @@ export default async function Inicio() {
                 key={g.id}
                 className={`group relative overflow-hidden rounded-2xl ${i === 0 ? "col-span-2 row-span-2 aspect-square md:aspect-auto" : "aspect-square"}`}
               >
-                <Imagen src={g.url} descripcion={g.descripcion} tamano="1200×1200" className="transition duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0">
+                  <Imagen src={g.url} descripcion={g.descripcion} tamano="1200×1200" className="transition duration-500 group-hover:scale-105" />
+                </div>
                 {g.url && (
                   <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4 text-sm text-white opacity-0 transition group-hover:opacity-100">
                     <span className="block text-xs uppercase tracking-wider text-coral-claro">{nombreCategoria(g.categoriaId)}</span>

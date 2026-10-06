@@ -12,7 +12,7 @@ export default async function Trabajos() {
     <>
       <EncabezadoPagina
         titulo="Trabajos realizados"
-        texto="Una muestra de las ventanas, puertas, baños, espejos y proyectos comerciales que hemos entregado."
+        texto="Una muestra de las ventanas, puertas, vitrinas y demás trabajos que hemos entregado."
       />
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
         <Galeria imagenes={imagenes} categorias={categorias} />

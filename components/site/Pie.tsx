@@ -77,7 +77,7 @@ export function Pie({ ajustes }: { ajustes: Ajustes }) {
             )}
             <li className="flex items-start gap-2">
               <IconoUbicacion className="mt-0.5 h-4 w-4 shrink-0 text-coral-claro" />
-              <span>{ajustes.direccion}</span>
+              <span>{ajustes.direccion}{ajustes.ciudad ? `, ${ajustes.ciudad}` : ""}</span>
             </li>
             <li className="flex items-start gap-2">
               <IconoReloj className="mt-0.5 h-4 w-4 shrink-0 text-coral-claro" />

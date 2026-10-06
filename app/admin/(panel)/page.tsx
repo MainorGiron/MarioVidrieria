@@ -14,6 +14,8 @@ export default async function Resumen() {
     !c.ajustes.whatsapp && { texto: "Agregar el número de WhatsApp", href: "/admin/empresa" },
     !c.ajustes.urlMapa && { texto: "Agregar el mapa de Google", href: "/admin/empresa" },
     c.ajustes.direccion.includes("pendiente") && { texto: "Escribir la dirección real", href: "/admin/empresa" },
+    c.ajustes.telefonos.some((t) => t.startsWith("0000")) && { texto: "Escribir el teléfono real", href: "/admin/empresa" },
+    !c.ajustes.correo && { texto: "Agregar el correo de contacto", href: "/admin/empresa" },
   ].filter(Boolean) as { texto: string; href: string }[];
 
   const cifras = [

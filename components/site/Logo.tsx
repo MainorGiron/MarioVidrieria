@@ -10,7 +10,7 @@ export function Logo({ oscuro = false }: { oscuro?: boolean }) {
           VIDRIERÍA INDUROCER
         </span>
         <span className={`block text-[11px] tracking-[0.2em] ${oscuro ? "text-coral-claro" : "text-rojo-oscuro"}`}>
-          VIDRIO · ALUMINIO · ESPEJOS
+          ALUMINIO · VIDRIO · PVC
         </span>
       </span>
     </Link>

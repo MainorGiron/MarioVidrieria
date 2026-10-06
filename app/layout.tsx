@@ -8,14 +8,14 @@ const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["lati
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Vidriería Indurocer | Vidrio y aluminio",
+    default: "Vidriería Indurocer | Aluminio, vidrio y PVC en El Progreso",
     template: "%s | Vidriería Indurocer",
   },
   description:
-    "Ventanas, puertas de vidrio, divisiones de baño, espejos y vitrinas en vidrio y aluminio. Medición a domicilio y cotización sin compromiso.",
+    "Ventanas PVC y de aluminio, vitrinas, espejos, enmarcados, puertas comerciales y tablilla de PVC en El Progreso, Yoro, Honduras.",
   openGraph: {
     title: "Vidriería Indurocer",
-    description: "Vidrio y aluminio a la medida de tu hogar y negocio.",
+    description: "La vidriería que te brinda calidad y confianza.",
     images: ["/logo.jpeg"],
     locale: "es",
     type: "website",
