@@ -3,7 +3,9 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // Renueva la sesión de Supabase del administrador en cada visita al panel.
 export async function proxy(request: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
+    .replace(/\/(rest|auth|storage)\/v1\/?.*$/, "")
+    .replace(/\/+$/, "");
   const clave =
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !clave) return NextResponse.next();

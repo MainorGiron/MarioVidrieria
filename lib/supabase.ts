@@ -4,7 +4,10 @@ import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
 // Si estas variables existen, el sitio usa Supabase. Si no, usa archivos locales (carpeta /data).
-const URL_SUPABASE = process.env.NEXT_PUBLIC_SUPABASE_URL;
+// Acepta la URL aunque la peguen con "/rest/v1/" o "/" al final.
+const URL_SUPABASE = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim()
+  .replace(/\/(rest|auth|storage)\/v1\/?.*$/, "")
+  .replace(/\/+$/, "");
 const CLAVE_PUBLICA =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
