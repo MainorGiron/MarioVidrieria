@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* Paleta tomada del logo de Vidriería Indurocer.
+   - rojo:         acentos grandes (títulos grandes, íconos, franjas)
+   - rojo-oscuro:  botones y enlaces con texto pequeño (contraste 6.9:1 sobre blanco)
+   - coral:        detalles; sobre fondo carbón usar coral-claro para texto
+   - rosa:         fondos suaves de secciones y tarjetas
+   - carbon/gris:  textos */
+@theme {
+  --color-rojo: #f21b07;
+  --color-rojo-oscuro: #b3140a;
+  --color-rojo-profundo: #8c0f08;
+  --color-coral: #f25c5c;
+  --color-coral-claro: #ff8a80;
+  --color-rosa: #ffe3e1;
+  --color-rosa-suave: #fff8f7;
+  --color-carbon: #1c1c1e;
+  --color-gris: #5b5b60;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-carbon);
+}
+
+::selection {
+  background: var(--color-rosa);
+  color: var(--color-rojo-profundo);
+}
+
+/* Patrón de "vidrio" para los espacios de imagen pendientes */
+.patron-vidrio {
+  background-color: var(--color-rosa-suave);
+  background-image:
+    linear-gradient(135deg, rgb(242 92 92 / 0.10) 25%, transparent 25%),
+    linear-gradient(225deg, rgb(242 92 92 / 0.10) 25%, transparent 25%),
+    linear-gradient(315deg, rgb(242 92 92 / 0.06) 25%, transparent 25%),
+    linear-gradient(45deg, rgb(242 92 92 / 0.06) 25%, transparent 25%);
+  background-size: 28px 28px;
+}
