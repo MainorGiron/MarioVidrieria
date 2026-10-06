@@ -58,3 +58,10 @@ lib/acciones-admin.ts     acciones del panel (guardar, subir, borrar)
 
 - **Con Supabase** (recomendado): textos y mensajes en la base de datos, fotos en Supabase Storage, login con correo y contraseña. Guía completa paso a paso: [docs/SUPABASE.md](docs/SUPABASE.md).
 - **Modo local** (sin variables de Supabase): todo en `data/contenido.json` y `data/imagenes/` (ignorados por git). Sirve para probar sin internet, pero no para publicar.
+
+## Publicar en Vercel
+
+1. Importa el repositorio en Vercel (preset Next.js, sin cambiar los comandos).
+2. Variables de entorno: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` y `NEXT_PUBLIC_SITE_URL` (la dirección del sitio). **No** pongas la secret key.
+3. Cada push a la rama principal del repositorio publica una nueva versión.
+4. Vercel limita cada envío a ~4.5 MB: sube las fotos de una en una y de menos de 4 MB.
