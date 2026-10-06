@@ -1,6 +1,6 @@
 "use server";
 
-import { modificarContenido, nuevoId } from "./datos";
+import { agregarMensaje } from "./datos";
 
 export type EstadoFormulario = { ok: boolean; mensaje: string } | null;
 
@@ -20,17 +20,10 @@ export async function enviarCotizacion(_prev: EstadoFormulario, form: FormData):
     return { ok: false, mensaje: "Escribe tu nombre, un teléfono o correo y tu mensaje." };
   }
 
-  await modificarContenido((c) => {
-    c.mensajes.unshift({
-      id: nuevoId("msg"),
-      nombre,
-      telefono,
-      correo,
-      servicio: texto(form, "servicio", 120),
-      mensaje,
-      fecha: new Date().toISOString(),
-      leido: false,
-    });
-  });
+  try {
+    await agregarMensaje({ nombre, telefono, correo, servicio: texto(form, "servicio", 120), mensaje });
+  } catch {
+    return { ok: false, mensaje: "No se pudo enviar. Intenta de nuevo o escríbenos por WhatsApp." };
+  }
   return { ok: true, mensaje: "¡Gracias! Recibimos tu solicitud y te contactaremos pronto." };
 }

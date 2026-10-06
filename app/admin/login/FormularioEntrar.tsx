@@ -4,13 +4,19 @@ import { useActionState } from "react";
 import { claseCampo } from "@/components/admin/ui";
 import { entrar } from "@/lib/acciones-admin";
 
-export function FormularioEntrar() {
+export function FormularioEntrar({ conCorreo }: { conCorreo: boolean }) {
   const [error, accion, entrando] = useActionState(entrar, null);
   return (
     <form action={accion} className="mt-6 space-y-4">
+      {conCorreo && (
+        <label className="block text-sm font-medium text-carbon">
+          Correo
+          <input type="email" name="correo" required autoFocus className={claseCampo} autoComplete="username" />
+        </label>
+      )}
       <label className="block text-sm font-medium text-carbon">
         Contraseña
-        <input type="password" name="contrasena" required autoFocus className={claseCampo} autoComplete="current-password" />
+        <input type="password" name="contrasena" required autoFocus={!conCorreo} className={claseCampo} autoComplete="current-password" />
       </label>
       {error && <p className="text-sm font-medium text-rojo-oscuro" role="alert">{error}</p>}
       <button

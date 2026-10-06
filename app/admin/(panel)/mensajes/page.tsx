@@ -1,11 +1,11 @@
 import { BotonBorrar, BotonGuardar } from "@/components/admin/cliente";
 import { Avisos, Tarjeta, TituloPagina } from "@/components/admin/ui";
 import { borrarMensaje, marcarMensaje } from "@/lib/acciones-admin";
-import { leerContenido } from "@/lib/datos";
+import { leerMensajes } from "@/lib/datos";
 import { enlaceTelefono, enlaceWhatsApp, formatearFecha } from "@/lib/util";
 
 export default async function Mensajes({ searchParams }: PageProps<"/admin/mensajes">) {
-  const { mensajes } = await leerContenido();
+  const mensajes = await leerMensajes();
   return (
     <>
       <TituloPagina titulo="Mensajes" texto="Solicitudes de cotización enviadas desde la página de contacto." />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { exigirSesion } from "@/lib/auth";
 import { salir } from "@/lib/acciones-admin";
-import { leerContenido } from "@/lib/datos";
+import { leerMensajes } from "@/lib/datos";
 import { MenuAdmin } from "./MenuAdmin";
 
 export const metadata: Metadata = { title: "Panel", robots: { index: false } };
@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function LayoutPanel({ children }: LayoutProps<"/admin">) {
   await exigirSesion();
-  const { mensajes } = await leerContenido();
+  const mensajes = await leerMensajes();
   const sinLeer = mensajes.filter((m) => !m.leido).length;
 
   return (

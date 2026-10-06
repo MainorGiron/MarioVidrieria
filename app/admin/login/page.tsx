@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { haySesion } from "@/lib/auth";
+import { usaSupabase } from "@/lib/supabase";
 import { FormularioEntrar } from "./FormularioEntrar";
 
 export const metadata: Metadata = { title: "Entrar al panel", robots: { index: false } };
@@ -13,8 +14,8 @@ export default async function Login() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo.jpeg" alt="Vidriería Indurocer" className="mx-auto h-28 w-auto" />
         <h1 className="mt-4 text-center font-serif text-2xl font-bold text-carbon">Panel administrativo</h1>
-        <p className="mt-1 text-center text-sm text-gris">Ingresa la contraseña para continuar.</p>
-        <FormularioEntrar />
+        <p className="mt-1 text-center text-sm text-gris">{usaSupabase() ? "Ingresa tu correo y contraseña." : "Ingresa la contraseña para continuar."}</p>
+        <FormularioEntrar conCorreo={usaSupabase()} />
       </div>
     </main>
   );

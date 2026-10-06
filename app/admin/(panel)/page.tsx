@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Tarjeta, TituloPagina } from "@/components/admin/ui";
-import { leerContenido } from "@/lib/datos";
+import { leerContenido, leerMensajes } from "@/lib/datos";
 
 export default async function Resumen() {
-  const c = await leerContenido();
+  const [c, mensajes] = await Promise.all([leerContenido(), leerMensajes()]);
   const faltanServicios = c.servicios.filter((s) => !s.imagen).length;
   const faltanGaleria = c.galeria.filter((g) => !g.url).length;
   const pendientes = [
@@ -22,7 +22,7 @@ export default async function Resumen() {
     { titulo: "Servicios", valor: c.servicios.filter((s) => s.visible).length, href: "/admin/servicios" },
     { titulo: "Fotos en galería", valor: c.galeria.filter((g) => g.url).length, href: "/admin/galeria" },
     { titulo: "Testimonios", valor: c.testimonios.filter((t) => t.visible).length, href: "/admin/testimonios" },
-    { titulo: "Mensajes sin leer", valor: c.mensajes.filter((m) => !m.leido).length, href: "/admin/mensajes" },
+    { titulo: "Mensajes sin leer", valor: mensajes.filter((m) => !m.leido).length, href: "/admin/mensajes" },
   ];
 
   return (

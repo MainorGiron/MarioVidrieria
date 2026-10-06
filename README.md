@@ -13,7 +13,7 @@ npm run dev
 ```
 
 - Sitio público: http://localhost:3000
-- Panel: http://localhost:3000/admin (contraseña en `ADMIN_PASSWORD`; si no la defines, en desarrollo es `indurocer`)
+- Panel: http://localhost:3000/admin (con Supabase: tu correo y contraseña; en modo local: `ADMIN_PASSWORD`, por defecto `indurocer`)
 
 ## Qué hay
 
@@ -37,7 +37,9 @@ components/site/    componentes del sitio (encabezado, pie, galería, Imagen…)
 components/admin/   componentes del panel (campos, botones, selector de imagen)
 lib/tipos.ts        tipos del contenido (= futuras tablas de Supabase)
 lib/contenido-inicial.ts  textos de ejemplo
-lib/datos.ts        dónde se guarda el contenido  ← único archivo a cambiar para Supabase
+lib/datos.ts        lee/guarda el contenido (Supabase o archivos locales)
+lib/supabase.ts     conexión con Supabase
+supabase/esquema.sql  tablas, seguridad y bucket de Supabase
 lib/acciones-admin.ts     acciones del panel (guardar, subir, borrar)
 ```
 
@@ -52,7 +54,7 @@ lib/acciones-admin.ts     acciones del panel (guardar, subir, borrar)
 | `carbon` | `#1C1C1E` | texto y secciones oscuras |
 | `gris` | `#5B5B60` | texto secundario |
 
-## Almacenamiento temporal
+## Dónde se guarda el contenido
 
-Por ahora el contenido se guarda en `data/contenido.json` y las fotos en `data/imagenes/` (carpeta ignorada por git).
-Funciona en tu computadora; **para publicar en internet hay que conectar Supabase** (última fase), porque Vercel no guarda archivos.
+- **Con Supabase** (recomendado): textos y mensajes en la base de datos, fotos en Supabase Storage, login con correo y contraseña. Guía completa paso a paso: [docs/SUPABASE.md](docs/SUPABASE.md).
+- **Modo local** (sin variables de Supabase): todo en `data/contenido.json` y `data/imagenes/` (ignorados por git). Sirve para probar sin internet, pero no para publicar.

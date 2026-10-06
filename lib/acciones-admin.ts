@@ -2,9 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { cerrarSesion, contrasenaValida, exigirSesion, iniciarSesion } from "./auth";
-import { borrarImagen, crearSlug, guardarImagen, leerContenido, modificarContenido, nuevoId } from "./datos";
-import type { Contenido } from "./tipos";
+import { cerrarSesion, exigirSesion, iniciarSesion } from "./auth";
+import {
+  alternarLeido,
+  borrarImagen,
+  crearSlug,
+  eliminarMensaje,
+  guardarImagen,
+  leerContenido,
+  modificarContenido,
+  nuevoId,
+} from "./datos";
 
 // ---------- utilidades ----------
 
@@ -61,8 +69,8 @@ async function resolverImagen(form: FormData, campo = "imagen"): Promise<string>
 // ---------- sesión ----------
 
 export async function entrar(_prev: string | null, form: FormData): Promise<string | null> {
-  if (!contrasenaValida(txt(form, "contrasena"))) return "Contraseña incorrecta.";
-  await iniciarSesion();
+  const error = await iniciarSesion(txt(form, "correo"), txt(form, "contrasena"));
+  if (error) return error;
   redirect("/admin");
 }
 
@@ -281,18 +289,9 @@ export async function borrarTestimonio(form: FormData) {
 // ---------- mensajes ----------
 
 export async function marcarMensaje(form: FormData) {
-  await ejecutar("/admin/mensajes", () =>
-    modificarContenido((c: Contenido) => {
-      const m = c.mensajes.find((x) => x.id === txt(form, "id"));
-      if (m) m.leido = !m.leido;
-    }),
-  );
+  await ejecutar("/admin/mensajes", () => alternarLeido(txt(form, "id")));
 }
 
 export async function borrarMensaje(form: FormData) {
-  await ejecutar("/admin/mensajes", () =>
-    modificarContenido((c) => {
-      c.mensajes = c.mensajes.filter((m) => m.id !== txt(form, "id"));
-    }),
-  );
+  await ejecutar("/admin/mensajes", () => eliminarMensaje(txt(form, "id")));
 }
